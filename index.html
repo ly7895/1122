@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173B2E">
+  <meta name="description" content="综测记录：记录加分、扣分、文字说明、照片和时间，自动汇总总分。数据只保存在本机浏览器里。">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="综测记录">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="color-scheme" content="light">
+  <title>综测记录</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="m4.5 17 4.6-4.2 3.4 3 2.6-2.2 4.4 4"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5h2.6L8.4 6h7.2l1.8 2.5H20a1.5 1.5 0 0 1 1.5 1.5v7.5A1.5 1.5 0 0 1 20 19H4a1.5 1.5 0 0 1-1.5-1.5V10A1.5 1.5 0 0 1 4 8.5Z"/><circle cx="12" cy="13.5" r="3.2"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5.2c0-.7.6-1.2 1.2-1.2h2.6c.7 0 1.2.5 1.2 1.2V7M6.5 7l.9 11.4c.05.9.8 1.6 1.7 1.6h5.8c.9 0 1.65-.7 1.7-1.6L17.5 7"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M15.5 5.5 18.5 8.5M5 19l1-4 9.5-9.5a1.8 1.8 0 0 1 2.5 0l1 1a1.8 1.8 0 0 1 0 2.5L9.5 18.5 5 19Z"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6h-6v6H5.5A1.5 1.5 0 0 1 4 19v-8.5Z"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.2M12 18.3v2.2M20.5 12h-2.2M5.7 12H3.5M18.01 5.99l-1.56 1.56M7.55 16.45l-1.56 1.56M18.01 18.01l-1.56-1.56M7.55 7.55 5.99 5.99"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10M7.5 10 12 14.5 16.5 10M5 19.5h14"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V5M7.5 9 12 4.5 16.5 9M5 19.5h14"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M3.5 10h17M9.5 10v9"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 4.5 13.7 9l4.5 1.7-4.5 1.7L12 17l-1.7-4.6L5.8 10.7 10.3 9 12 4.5Z"/></symbol>
+  </svg>
+
+  <header class="topbar" id="topbar">
+    <span class="brand" aria-hidden="true">综</span>
+    <div class="topbar-titles">
+      <b>综测记录</b>
+      <small class="save-state" id="saveState">本地保存</small>
+    </div>
+    <small class="hero-date" id="todayLabel"></small>
+  </header>
+
+  <main>
+    <section id="homeView">
+      <section class="hero" aria-labelledby="heroLabel">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow" id="heroLabel">当前总分</span>
+          <span class="hero-date" id="heroDate"></span>
+        </div>
+        <div class="hero-score">
+          <span class="hero-score" id="totalScore">0</span>
+          <span class="label">分</span>
+        </div>
+        <p class="hero-formula" id="heroFormula">还没有记录，点下面的加号记下第一笔</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span>加分合计</span>
+            <b class="hero-stat is-add" id="statAdd">+0</b>
+          </div>
+          <div class="hero-stat">
+            <span>扣分合计</span>
+            <b class="hero-stat is-minus" id="statMinus">−0</b>
+          </div>
+          <div class="hero-stat">
+            <span>记录条数</span>
+            <b class="hero-stat" id="statCount">0</b>
+          </div>
+        </div>
+        <p class="hero-foot" id="heroHint"></p>
+      </section>
+
+      <section class="card" aria-labelledby="monthTitle">
+        <div class="section-head">
+          <h2 id="monthTitle">月度小结</h2>
+          <span class="muted" id="monthSummary"></span>
+        </div>
+        <div class="months" id="monthStrip"></div>
+      </section>
+
+      <section class="toolbar" aria-label="搜索与筛选">
+        <div class="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="searchInput" type="search" placeholder="搜索事项、备注或日期" autocomplete="off" enterkeyhint="search" aria-label="搜索记录">
+          <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>
+            <svg class="icon"><use href="#i-close"/></svg>
+          </button>
+        </div>
+        <div class="chips" id="filterBar" role="group" aria-label="筛选记录"></div>
+      </section>
+
+      <section aria-live="polite">
+        <div class="record-list" id="recordList"></div>
+      </section>
+    </section>
+
+    <section id="settingsView" hidden>
+      <div class="settings-group">
+        <h3>备份与导出</h3>
+        <div class="settings-list">
+          <button class="settings-row" type="button" id="exportJsonBtn" data-settings="export-json">
+            <svg class="icon"><use href="#i-download"/></svg>
+            <span class="row-main">导出备份<small>JSON 文件，包含全部文字和照片</small></span>
+          </button>
+          <button class="settings-row" type="button" id="exportCsvBtn" data-settings="export-csv">
+            <svg class="icon"><use href="#i-table"/></svg>
+            <span class="row-main">导出表格<small>CSV 文件，可以用 Excel、WPS 打开</small></span>
+          </button>
+          <button class="settings-row" type="button" id="importBtn" data-settings="import">
+            <svg class="icon"><use href="#i-upload"/></svg>
+            <span class="row-main">从备份恢复<small id="importHint">选择之前导出的 JSON 文件</small></span>
+          </button>
+          <input type="file" id="importFile" accept=".json,application/json" hidden>
+        </div>
+        <p class="notice">数据只保存在这台手机的浏览器里，换手机、清缓存前请先导出备份，导出的文件里包含全部照片。</p>
+      </div>
+
+      <div class="settings-group">
+        <h3>存储空间</h3>
+        <div class="storage-bar" aria-hidden="true"><i id="storageBar"></i></div>
+        <p class="notice" id="storageNote"></p>
+      </div>
+
+      <div class="settings-group">
+        <h3>更多</h3>
+        <div class="settings-list">
+          <button class="settings-row" type="button" id="sampleBtn" data-settings="sample">
+            <svg class="icon"><use href="#i-sparkle"/></svg>
+            <span class="row-main">载入示例数据<small>先看看有记录时是什么样子</small></span>
+          </button>
+          <button class="settings-row danger" type="button" id="clearDataBtn" data-settings="clear">
+            <svg class="icon"><use href="#i-trash"/></svg>
+            <span class="row-main">清空全部记录<small>删除后无法恢复，建议先导出备份</small></span>
+          </button>
+        </div>
+        <p class="notice">综测记录 v2 · 全部数据留在本机，不联网、不上传。照片会自动压缩到手机合适的大小。</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="主导航">
+    <button class="tab is-active" type="button" data-tab="home" aria-current="page">
+      <svg class="icon"><use href="#i-home"/></svg><span>记录</span>
+    </button>
+    <button class="tab tab-center" type="button" id="addBtn" aria-label="新增一条记录">
+      <svg class="icon"><use href="#i-plus"/></svg>
+    </button>
+    <button class="tab" type="button" data-tab="settings">
+      <svg class="icon"><use href="#i-settings"/></svg><span>设置</span>
+    </button>
+  </nav>
+
+  <dialog class="sheet" id="entryDialog" aria-labelledby="entryTitle">
+    <form class="sheet" id="entryForm" novalidate>
+      <header class="sheet-head">
+        <div>
+          <div class="sheet-title"><b id="entryTitle">记一笔</b><small id="entryEyebrow">NEW RECORD</small></div>
+        </div>
+        <button class="icon-button" type="button" data-close="entryDialog" aria-label="关闭">
+          <svg class="icon"><use href="#i-close"/></svg>
+        </button>
+      </header>
+
+      <div class="sheet-body">
+        <p class="form-error" id="formError" hidden></p>
+
+        <div class="field">
+          <span class="field-label">这条是加分还是扣分</span>
+          <div class="sign-switch" role="group" aria-label="加减">
+            <button class="sign-switch is-active" type="button" data-sign="1" aria-pressed="true">
+              <svg class="icon"><use href="#i-arrow-up"/></svg>加分
+            </button>
+            <button class="sign-switch" type="button" data-sign="-1" aria-pressed="false">
+              <svg class="icon"><use href="#i-arrow-down"/></svg>扣分
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="scoreInput">分值</label>
+          <div class="amount" id="amountEditor">
+            <span class="sign" id="signPrefix" aria-hidden="true">+</span>
+            <input class="amount" id="scoreInput" type="text" inputmode="decimal" placeholder="0.5" autocomplete="off" aria-describedby="formError">
+            <span class="amount">分</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="titleInput">事项</label>
+          <input class="input" id="titleInput" type="text" maxlength="60" placeholder="例如：数学建模竞赛 省级二等奖" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="noteInput">文字说明 <span class="hint">选填</span></label>
+          <textarea class="textarea" id="noteInput" rows="3" maxlength="1000" placeholder="证书编号、负责人、交材料的时间，方便以后查"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="field-label">照片 <span class="hint" id="photoHint">最多 6 张，自动压缩</span></span>
+          <input type="file" id="photoInput" accept="image/*" multiple hidden>
+          <div class="photos" id="photoList"></div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="dateInput">日期</label>
+            <input class="input" id="dateInput" type="date">
+          </div>
+          <div class="field">
+            <label class="field-label" for="timeInput">时间 <span class="hint">选填</span></label>
+            <input class="input" id="timeInput" type="time">
+          </div>
+        </div>
+      </div>
+
+      <footer class="sheet-foot">
+        <button class="btn btn-ghost" type="button" id="deleteEntryBtn" hidden>
+          <svg class="icon"><use href="#i-trash"/></svg>删除
+        </button>
+        <button class="btn btn-primary btn-block" type="submit" id="entrySubmitBtn">保存记录</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="confirm-sheet" id="confirmDialog" aria-labelledby="confirmTitle">
+    <div class="confirm-sheet">
+      <h2 class="confirm-sheet" id="confirmTitle"></h2>
+      <p class="confirm-sheet" id="confirmText"></p>
+    </div>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" type="button" id="confirmCancelBtn">取消</button>
+      <button class="btn btn-danger" type="button" id="confirmOkBtn">确认</button>
+    </div>
+  </dialog>
+
+  <div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="查看照片">
+    <div class="viewer-stage" id="viewerStage"></div>
+    <button class="viewer-bar" type="button" id="viewerClose" aria-label="关闭照片">
+      <svg class="icon"><use href="#i-close"/></svg>
+    </button>
+    <p class="viewer-bar" id="viewerCount"></p>
+  </div>
+
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite"></div>
+
+  <div class="busy" id="busy" hidden>
+    <div class="busy-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <span id="busyText">正在处理…</span>
+    </div>
+  </div>
+
+  <style>
+/* =========================================================
+   综测记录 · 全部样式
+   ========================================================= */
+
+:root {
+  --paper: #f2eee4;
+  --card: #fcfaf4;
+  --card-soft: #f6f1e6;
+  --ink: #1b2a24;
+  --ink-soft: #3b4942;
+  --muted: #6d7469;
+  --faint: #96998c;
+  --line: rgba(27, 42, 36, 0.12);
+  --line-strong: rgba(27, 42, 36, 0.22);
+  --green: #173b2e;
+  --green-2: #245544;
+  --mint: #e3ecb4;
+  --mint-deep: #c7d878;
+  --coral: #b85d45;
+  --coral-soft: #f4e2db;
+  --coral-soft-2: #fbf2ee;
+  --mint-soft: #eef3d6;
+  --danger: #a94b3b;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Songti SC", "STSong", "Noto Serif SC", serif;
+  --num: "SF Pro Rounded", ui-rounded, "DIN Alternate", "Helvetica Neue", "PingFang SC", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --topbar-h: 58px;
+  --tabbar-h: 66px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 520px at 6% -10%, rgba(227, 236, 180, 0.55), transparent 62%),
+    radial-gradient(720px 480px at 104% 4%, rgba(184, 93, 69, 0.09), transparent 60%),
+    var(--paper);
+  background-attachment: fixed;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body.modal-open { overflow: hidden; }
+
+button, input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  touch-action: manipulation;
+}
+
+[hidden] { display: none !important; }
+
+.svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+/* ---------- 顶部固定栏 ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: calc(var(--topbar-h) + var(--safe-top));
+  padding: calc(var(--safe-top) + 8px) calc(14px + var(--safe-right)) 8px calc(14px + var(--safe-left));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  background: rgba(242, 238, 228, 0.82);
+  -webkit-backdrop-filter: saturate(1.4) blur(18px);
+  backdrop-filter: saturate(1.4) blur(18px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.topbar.is-scrolled { border-bottom-color: var(--line); }
+
+.brand {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--green);
+  color: var(--mint);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(23, 59, 46, 0.18);
+}
+
+.topbar-titles {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.topbar-titles b {
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+.topbar-titles small {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.save-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.save-state::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint-deep);
+}
+
+.save-state.is-flashing { color: var(--green-2); border-color: rgba(23, 59, 46, 0.25); }
+.save-state.is-error { color: var(--danger); border-color: rgba(169, 75, 59, 0.35); }
+.save-state.is-error::before { background: var(--danger); }
+
+/* ---------- 主体 ---------- */
+
+main {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 10px calc(14px + var(--safe-right)) calc(var(--tabbar-h) + var(--safe-bottom) + 30px) calc(14px + var(--safe-left));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 34px rgba(36, 44, 37, 0.05);
+}
+
+/* ---------- 首页：总分 ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 18px 14px;
+  background:
+    radial-gradient(420px 200px at 100% 0%, rgba(227, 236, 180, 0.42), transparent 70%),
+    var(--card);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hero-date { font-variant-numeric: tabular-nums; }
+
+.hero-total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.hero-total .label {
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.hero-score {
+  font-family: var(--num);
+  font-size: clamp(44px, 14vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--green);
+}
+
+.hero-score.is-negative { color: var(--coral); }
+
+.hero-formula {
+  margin-top: 2px;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-formula b { color: var(--green-2); font-weight: 600; }
+.hero-formula b.is-minus { color: var(--coral); }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hero-stat {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+.hero-stat span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hero-stat b {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--num);
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-stat.is-add b { color: var(--green-2); }
+.hero-stat.is-minus b { color: var(--coral); }
+
+.hero-foot {
+  margin: 12px 2px 0;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+/* ---------- 月度小结 ---------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 22px 4px 10px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+}
+
+.section-head .muted {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.months {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.month {
+  padding: 9px 2px 8px;
+  border-radius: 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-align: center;
+  min-width: 0;
+}
+
+.month span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.month b {
+  display: block;
+  font-family: var(--num);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.month.is-add b { color: var(--green-2); }
+.month.is-minus b { color: var(--coral); }
+.month.is-zero b { color: var(--faint); }
+
+/* ---------- 工具条 ---------- */
+
+.toolbar {
+  position: sticky;
+  top: calc(var(--topbar-h) + var(--safe-top));
+  z-index: 20;
+  margin: 0 -14px;
+  padding: 10px 14px 8px;
+  background: rgba(242, 238, 228, 0.9);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search .icon {
+  position: absolute;
+  left: 12px;
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.search input {
+  width: 100%;
+  height: 42px;
+  padding: 0 40px 0 38px;
+  border-radius: 13px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search input:focus {
+  border-color: rgba(23, 59, 46, 0.4);
+  box-shadow: 0 0 0 3px rgba(199, 216, 120, 0.35);
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  height: 32px;
+  padding: 0 13px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.chip b {
+  margin-left: 4px;
+  font-weight: 600;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.chip.is-active {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--mint);
+  font-weight: 600;
+}
+
+.chip.is-active b { color: rgba(227, 236, 180, 0.75); }
+
+/* ---------- 记录列表 ---------- */
+
+.record-list { margin-top: 6px; }
+
+.month-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 16px 4px 8px;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.month-label b { color: var(--ink-soft); font-weight: 600; }
+
+.record {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "date copy score"
+    "date thumb thumb";
+  column-gap: 12px;
+  row-gap: 8px;
+  align-items: start;
+  text-align: left;
+  padding: 13px;
+  margin-bottom: 9px;
+  border-radius: 17px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(36, 44, 37, 0.04);
+  transition: transform 0.12s var(--ease), border-color 0.15s;
+  animation: record-in 0.32s var(--ease) both;
+}
+
+.record:active { transform: scale(0.985); border-color: var(--line-strong); }
+
+.record.is-add { border-left: 3px solid var(--mint-deep); }
+.record.is-minus { border-left: 3px solid var(--coral); }
+
+@keyframes record-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.record.is-new { animation: record-new 0.9s var(--ease); }
+
+@keyframes record-new {
+  0% { background: var(--mint-soft); }
+  100% { background: var(--card); }
+}
+
+.record-date {
+  grid-area: date;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0 5px;
+  border-radius: 11px;
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+}
+
+.record-date b {
+  font-family: var(--num);
+  font-size: 18px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.record-date span {
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.record-copy {
+  grid-area: copy;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.record-title {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.record-note {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.record-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.record-meta .with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.record-meta .icon { width: 13px; height: 13px; }
+
+.record-score {
+  grid-area: score;
+  font-family: var(--num);
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.record-score.is-add { color: var(--green-2); }
+.record-score.is-minus { color: var(--coral); }
+
+.record-thumb {
+  grid-area: thumb;
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.record-thumb:empty { display: none; }
+
+.record-thumb img {
+  width: 58px;
+  height: 58px;
+  border-radius: 11px;
+  object-fit: cover;
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.record-thumb-count {
+  width: 58px;
+  height: 58px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 空状态 ---------- */
+
+.empty {
+  text-align: center;
+  padding: 40px 20px 28px;
+}
+
+.empty-art {
+  width: 132px;
+  height: 114px;
+  margin: 0 auto 6px;
+  display: block;
+}
+
+.empty-title {
+  margin: 6px 0 4px;
+  font-size: 17px;
+}
+
+.empty-text {
+  margin: 0 auto 18px;
+  max-width: 300px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.empty-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-button {
+  font-size: 14px;
+  color: var(--green-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- 按钮 ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.12s var(--ease), background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--green);
+  color: var(--mint);
+  box-shadow: 0 8px 20px rgba(23, 59, 46, 0.2);
+}
+
+.btn-ghost {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink-soft);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn-block { width: 100%; }
+
+.btn .icon { width: 18px; height: 18px; }
+
+/* ---------- 底部分页 ---------- */
+
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  padding: 0 calc(10px + var(--safe-right)) var(--safe-bottom) calc(10px + var(--safe-left));
+  background: rgba(252, 250, 244, 0.9);
+  -webkit-backdrop-filter: saturate(1.4) blur(18px);
+  backdrop-filter: saturate(1.4) blur(18px);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  height: calc(var(--tabbar-h) + var(--safe-bottom));
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 100%;
+  color: var(--muted);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+.tab .icon { width: 23px; height: 23px; }
+
+.tab.is-active { color: var(--green); font-weight: 600; }
+
+.tab-center {
+  justify-self: center;
+  width: 58px;
+  height: 58px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--mint);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 26px rgba(23, 59, 46, 0.32);
+  border: 4px solid var(--paper);
+}
+
+.tab-center .icon { width: 26px; height: 26px; stroke-width: 2.2; }
+.tab-center:active { transform: scale(0.94); }
+
+/* ---------- 弹窗 ---------- */
+
+dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+  color: var(--ink);
+}
+
+dialog::backdrop {
+  background: rgba(20, 30, 26, 0.42);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: min(92dvh, 900px);
+  background: var(--card);
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -18px 50px rgba(20, 30, 26, 0.18);
+  animation: sheet-in 0.28s var(--ease);
+  overflow: hidden;
+}
+
+@keyframes sheet-in {
+  from { transform: translateY(24px); opacity: 0.4; }
+  to { transform: none; opacity: 1; }
+}
+
+.sheet-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 14px 10px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+
+.sheet-head::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 38px;
+  height: 4px;
+  margin-left: -19px;
+  border-radius: 99px;
+  background: var(--line-strong);
+}
+
+.sheet-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.sheet-title b { font-size: 17px; }
+
+.sheet-title small {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  flex: none;
+}
+
+.sheet-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 18px 18px;
+  flex: 1;
+}
+
+.sheet-foot {
+  padding: 12px 18px calc(14px + var(--safe-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > label,
+.field-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.field .hint {
+  font-size: 12px;
+  color: var(--faint);
+  font-weight: 400;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  border-radius: 12px;
+  padding: 11px 13px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: rgba(23, 59, 46, 0.42);
+  background: var(--card);
+  box-shadow: 0 0 0 3px rgba(199, 216, 120, 0.35);
+}
+
+.input.has-error,
+.textarea.has-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(169, 75, 59, 0.14);
+}
+
+.textarea {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+input[type="date"].input,
+input[type="datetime-local"].input {
+  min-height: 44px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* 分值编辑器 */
+
+.amount {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  padding: 4px 4px 4px 12px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.amount:focus-within {
+  border-color: rgba(23, 59, 46, 0.42);
+  box-shadow: 0 0 0 3px rgba(199, 216, 120, 0.35);
+}
+
+.amount.has-error { border-color: var(--danger); }
+
+.amount .sign {
+  font-family: var(--num);
+  font-size: 26px;
+  font-weight: 700;
+  width: 26px;
+  text-align: center;
+  color: var(--green-2);
+}
+
+.amount.is-negative .sign { color: var(--coral); }
+
+.amount input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  min-width: 0;
+  height: 50px;
+  font-family: var(--num);
+  font-size: 30px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 0 8px;
+}
+
+.sign-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.sign-switch button {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.sign-switch button.is-active[data-sign="1"] {
+  background: var(--mint-soft);
+  border-color: rgba(23, 59, 46, 0.35);
+  color: var(--green-2);
+}
+
+.sign-switch button.is-active[data-sign="-1"] {
+  background: var(--coral-soft-2);
+  border-color: rgba(184, 93, 69, 0.45);
+  color: var(--coral);
+}
+
+.form-error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: rgba(169, 75, 59, 0.09);
+  border: 1px solid rgba(169, 75, 59, 0.25);
+  color: var(--danger);
+  font-size: 13.5px;
+}
+
+/* 照片 */
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.photo-tile {
+  position: relative;
+  width: 82px;
+  height: 82px;
+}
+
+.photo-tile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  display: block;
+}
+
+.photo-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 99px;
+  background: rgba(27, 42, 36, 0.82);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--card);
+}
+
+.photo-remove .icon { width: 12px; height: 12px; stroke-width: 2.4; }
+
+.photo-add {
+  width: 82px;
+  height: 82px;
+  border-radius: 12px;
+  border: 1.5px dashed var(--line-strong);
+  background: var(--card-soft);
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11.5px;
+}
+
+.photo-add .icon { width: 22px; height: 22px; }
+
+.photo-add:disabled { opacity: 0.45; }
+
+/* 设置 */
+
+.settings-group {
+  margin-top: 18px;
+}
+
+.settings-group:first-child { margin-top: 0; }
+
+.settings-group h3 {
+  margin: 0 4px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.settings-list {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.settings-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.settings-row:last-child { border-bottom: 0; }
+
+.settings-row .icon { color: var(--green-2); }
+
+.settings-row .row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+
+.settings-row .row-main small {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.settings-row .chev { color: var(--faint); width: 18px; height: 18px; }
+
+.settings-row.danger { color: var(--danger); }
+.settings-row.danger .icon { color: var(--danger); }
+
+.settings-row:active { background: var(--card-soft); }
+
+.notice {
+  margin: 14px 4px 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--faint);
+}
+
+.storage-bar {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--card-soft);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin: 8px 4px 0;
+}
+
+.storage-bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--mint-deep), var(--green-2));
+  transition: width 0.4s var(--ease);
+}
+
+/* 图片查看 */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(8, 12, 10, 0.94);
+  display: flex;
+  flex-direction: column;
+  animation: fade-in 0.18s ease;
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.viewer-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.viewer-stage img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  scroll-snap-align: center;
+}
+
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(10px + var(--safe-top)) 14px calc(12px + var(--safe-bottom));
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.viewer-bar button {
+  color: rgba(255, 255, 255, 0.9);
+  width: 40px;
+  height: 40px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ? */
+
+.confirm-sheet {
+  width: 100%;
+  background: var(--card);
+  border-radius: 22px;
+  padding: 20px 18px 16px;
+  animation: sheet-in 0.22s var(--ease);
+}
+
+.confirm-sheet h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.confirm-sheet p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  white-space: pre-line;
+}
+
+.confirm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#confirmDialog {
+  max-width: 380px;
+  padding: 0 18px;
+}
+
+/* Toast */
+
+.toast-region {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 14px);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  padding: 0 16px;
+}
+
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 10px 16px;
+  border-radius: 99px;
+  background: rgba(23, 59, 46, 0.94);
+  color: #f4f7e6;
+  font-size: 14px;
+  box-shadow: 0 12px 30px rgba(20, 30, 26, 0.25);
+  animation: toast-in 0.24s var(--ease);
+}
+
+.toast span { overflow-wrap: anywhere; }
+
+.toast.is-error { background: rgba(169, 75, 59, 0.96); }
+.toast.is-warn { background: rgba(60, 72, 64, 0.95); }
+
+.toast.is-leaving { opacity: 0; transform: translateY(6px); transition: all 0.22s; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+  /* 处理中 */
+
+.busy {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  background: rgba(242, 238, 228, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.busy-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 28px;
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 18px 48px rgba(20, 30, 26, 0.2);
+  font-size: 14px;
+}
+
+.spinner {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--mint);
+  border-top-color: var(--green);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- 宽屏 ---------- */
+
+@media (min-width: 720px) {
+  :root { --safe-bottom: 0px; }
+
+  body { background-attachment: scroll; }
+
+  main {
+    padding-top: 18px;
+    padding-bottom: 110px;
+  }
+
+  .toolbar { margin: 0; padding: 10px 0 8px; border-radius: 0; }
+
+  .tabbar {
+    left: 50%;
+    right: auto;
+    bottom: 18px;
+    transform: translateX(-50%);
+    width: auto;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    height: 62px;
+    padding: 0 12px;
+    border-radius: 99px;
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(20, 30, 26, 0.16);
+  }
+
+  .tab {
+    flex-direction: row;
+    padding: 0 18px;
+    font-size: 13.5px;
+    border-radius: 99px;
+  }
+
+  .tab.is-active { background: var(--mint-soft); }
+
+  .tab-center {
+    margin-top: 0;
+    border-color: transparent;
+  }
+
+  dialog { max-width: 580px; margin: 4vh auto; }
+
+  .sheet {
+    max-height: 88dvh;
+    border-radius: 22px;
+  }
+
+  .sheet-foot { padding-bottom: 14px; }
+
+  .toast-region { bottom: 98px; }
+
+  .record { grid-template-areas: "date copy score thumb"; align-items: center; }
+
+  .record-thumb { justify-self: end; }
+  .record-thumb img, .record-thumb-count { width: 52px; height: 52px; }
+}
+
+@media (max-width: 359px) {
+  .hero-stat b { font-size: 16px; }
+  .month span { font-size: 10.5px; }
+  .record-score { font-size: 19px; }
+  .field-row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- 设置页间距 ---------- */
+
+.settings-group { margin-top: 22px; }
+.settings-group:first-child { margin-top: 6px; }
+  </style>
+
+  <script>
+(() => {
+  "use strict";
+
+  /* =========================================================
+     常量
+     ========================================================= */
+
+  const STORAGE_KEY = "zongce.records.v1";
+  const APP_NAME = "综测记录";
+  const APP_VERSION = 1;
+  const MAX_SCORE = 1000;
+  const MAX_TITLE = 60;
+  const MAX_NOTE = 1000;
+  const MAX_PHOTOS = 6;
+  const PHOTO_MAX_SIDE = 1280;
+  const PHOTO_TARGET_BYTES = 320 * 1024;
+  const IMPORT_MAX_BYTES = 80 * 1024 * 1024;
+  const QUOTA_BYTES = 4 * 1024 * 1024;
+  const WEEKDAYS = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
+  /* =========================================================
+     工具函数
+     ========================================================= */
+
+  const round2 = value => Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+
+  function formatScore(value) {
+    let number = round2(Number(value) || 0);
+    if (Object.is(number, -0)) number = 0;
+    if (Number.isInteger(number)) return String(number);
+    return number.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+  }
+
+  function signed(value, withPlus = true) {
+    const number = round2(Number(value) || 0);
+    if (number > 0) return `${withPlus ? "+" : ""}${formatScore(number)}`;
+    if (number < 0) return `−${formatScore(Math.abs(number))}`;
+    return "0";
+  }
+
+  function pad2(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function ymd(date) {
+    return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
+  }
+
+  function todayISO() {
+    return ymd(new Date());
+  }
+
+  function nowHHMM() {
+    const date = new Date();
+    return `${pad2(date.getHours())}:${pad2(date.getMinutes())}`;
+  }
+
+  function isValidISODate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return false;
+    const [year, month, day] = String(value).split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+  }
+
+  function isValidTime(value) {
+    return /^([01]\d|2[0-3]):[0-5]\d$/.test(String(value));
+  }
+
+  function escapeHTML(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function uid() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID();
+    }
+    return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+  }
+
+  function formatBytes(bytes) {
+    const value = Number(bytes) || 0;
+    if (value < 1024) return `${value} B`;
+    if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} KB`;
+    return `${(value / 1024 / 1024).toFixed(2)} MB`;
+  }
+
+  function weekdayOf(iso) {
+    const [year, month, day] = iso.split("-").map(Number);
+    return WEEKDAYS[new Date(year, month - 1, day).getDay()];
+  }
+
+  function dateLabel(iso) {
+    if (!iso) return "";
+    const [, month, day] = iso.split("-").map(Number);
+    return `${month}月${day}日`;
+  }
+
+  function relativeTime(entry) {
+    if (!entry.time) return `${dateLabel(entry.date)} ${weekdayOf(entry.date)}`;
+    const date = new Date(`${entry.date}T${entry.time}:00`);
+    const diff = Date.now() - date.getTime();
+    if (diff >= 0 && diff < 60 * 1000) return "刚刚";
+    if (diff >= 0 && diff < 60 * 60 * 1000) return `${Math.max(1, Math.floor(diff / 60000))} 分钟前`;
+    if (diff >= 0 && diff < 24 * 60 * 60 * 1000 && entry.date === todayISO()) return `今天 ${entry.time}`;
+    return `${dateLabel(entry.date)} ${entry.time}`;
+  }
+
+  function computeTotals(items) {
+    let add = 0;
+    let minus = 0;
+    for (const item of items) {
+      if (item.score > 0) add += item.score;
+      else minus += Math.abs(item.score);
+    }
+    add = round2(add);
+    minus = round2(minus);
+    return { add, minus, total: round2(add - minus), count: items.length };
+  }
+
+  function sortItems(items) {
+    return [...items].sort((first, second) => {
+      const keyA = `${first.date}T${first.time || "00:00"}`;
+      const keyB = `${second.date}T${second.time || "00:00"}`;
+      if (keyA !== keyB) return keyA < keyB ? 1 : -1;
+      return (second.createdAt || 0) - (first.createdAt || 0);
+    });
+  }
+
+  /* =========================================================
+     数据模型
+     ========================================================= */
+
+  function normalizePhoto(raw) {
+    if (typeof raw === "string") {
+      const match = raw.match(/^data:(image\/[\w.+-]+);base64,(.+)$/s);
+      if (!match) return null;
+      return { id: uid(), type: match[1], size: Math.round((match[2].length * 3) / 4), src: raw };
+    }
+    if (!raw || typeof raw !== "object") return null;
+    const src = typeof raw.src === "string"
+      ? raw.src
+      : typeof raw.data === "string"
+        ? `data:${raw.type || "image/jpeg"};base64,${raw.data}`
+        : "";
+    if (!/^data:image\/[\w.+-]+;base64,/.test(src) || src.length > 4 * 1024 * 1024) return null;
+    const base64 = src.slice(src.indexOf(",") + 1);
+    const sizeNumber = Number(raw.size);
+    return {
+      id: String(raw.id || uid()).slice(0, 64),
+      type: String(raw.type || "image/jpeg").slice(0, 40),
+      size: Number.isFinite(sizeNumber) && sizeNumber > 0 ? Math.round(sizeNumber) : Math.round((base64.length * 3) / 4),
+      src
+    };
+  }
+
+  function normalizeEntry(raw, seenIds) {
+    if (!raw || typeof raw !== "object") return null;
+
+    let score = Number(raw.score);
+    if (score === 0 && raw.amount !== undefined) score = Number(raw.amount);
+    if (!Number.isFinite(score) || score === 0) return null;
+    score = round2(Math.min(MAX_SCORE, Math.max(-MAX_SCORE, score)));
+
+    const title = String(raw.title || "").trim().slice(0, MAX_TITLE);
+    if (!title) return null;
+
+    const date = isValidISODate(raw.date) ? String(raw.date) : todayISO();
+    const time = isValidTime(raw.time) ? String(raw.time) : "";
+    const note = String(raw.note || raw.text || "").replace(/\r\n/g, "\n").trim().slice(0, MAX_NOTE);
+
+    let id = String(raw.id || "").trim().slice(0, 64);
+    if (!id || seenIds.has(id)) id = uid();
+    seenIds.add(id);
+
+    const photos = (Array.isArray(raw.photos) ? raw.photos : []).map(normalizePhoto).filter(Boolean).slice(0, MAX_PHOTOS);
+
+    const createdAtNumber = Number(raw.createdAt);
+    return {
+      id,
+      title,
+      note,
+      score,
+      date,
+      time,
+      photos,
+      createdAt: Number.isFinite(createdAtNumber) && createdAtNumber > 0 ? createdAtNumber : Date.now()
+    };
+  }
+
+  function normalizeState(raw) {
+    const source = raw && typeof raw === "object" ? raw : {};
+    const rawItems = Array.isArray(source.items) ? source.items : [];
+    const seenIds = new Set();
+    const items = rawItems.map(item => normalizeEntry(item, seenIds)).filter(Boolean);
+    const updatedAtNumber = Number(source.updatedAt);
+    return {
+      items,
+      updatedAt: Number.isFinite(updatedAtNumber) && updatedAtNumber > 0 ? updatedAtNumber : 0
+    };
+  }
+
+  function loadState() {
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return normalizeState({});
+      return normalizeState(JSON.parse(raw));
+    } catch (error) {
+      console.warn("读取综测记录失败：", error);
+      return normalizeState({});
+    }
+  }
+
+  function serializeState() {
+    return { items: state.items, updatedAt: state.updatedAt };
+  }
+
+  function saveState() {
+    try {
+      state.updatedAt = Date.now();
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(serializeState()));
+      flashSaved();
+      updateStorageInfo();
+      return true;
+    } catch (error) {
+      console.error("保存失败：", error);
+      setSaveState("保存失败", true);
+      showToast("保存失败：手机浏览器存储空间可能已满，请先导出备份并删掉一些旧照片。", "error", 5200);
+      return false;
+    }
+  }
+
+  /* =========================================================
+     状态与元素
+     ========================================================= */
+
+  const $ = selector => document.querySelector(selector);
+  const els = {};
+
+  els.topbar = $("#topbar");
+  els.saveState = $("#saveState");
+  els.todayLabel = $("#todayLabel");
+  els.homeView = $("#homeView");
+  els.settingsView = $("#settingsView");
+  els.heroDate = $("#heroDate");
+  els.totalScore = $("#totalScore");
+  els.heroFormula = $("#heroFormula");
+  els.statAdd = $("#statAdd");
+  els.statMinus = $("#statMinus");
+  els.statCount = $("#statCount");
+  els.heroHint = $("#heroHint");
+  els.monthSummary = $("#monthSummary");
+  els.monthStrip = $("#monthStrip");
+  els.searchInput = $("#searchInput");
+  els.searchClear = $("#searchClear");
+  els.filterBar = $("#filterBar");
+  els.recordList = $("#recordList");
+  els.addBtn = $("#addBtn");
+  els.entryDialog = $("#entryDialog");
+  els.entryForm = $("#entryForm");
+  els.entryEyebrow = $("#entryEyebrow");
+  els.entryTitle = $("#entryTitle");
+  els.formError = $("#formError");
+  els.amountEditor = $("#amountEditor");
+  els.signPrefix = $("#signPrefix");
+  els.scoreInput = $("#scoreInput");
+  els.titleInput = $("#titleInput");
+  els.noteInput = $("#noteInput");
+  els.dateInput = $("#dateInput");
+  els.timeInput = $("#timeInput");
+  els.photoList = $("#photoList");
+  els.photoInput = $("#photoInput");
+  els.photoHint = $("#photoHint");
+  els.deleteEntryBtn = $("#deleteEntryBtn");
+  els.entrySubmitBtn = $("#entrySubmitBtn");
+  els.exportJsonBtn = $("#exportJsonBtn");
+  els.exportCsvBtn = $("#exportCsvBtn");
+  els.importBtn = $("#importBtn");
+  els.importFile = $("#importFile");
+  els.importHint = $("#importHint");
+  els.sampleBtn = $("#sampleBtn");
+  els.clearDataBtn = $("#clearDataBtn");
+  els.storageBar = $("#storageBar");
+  els.storageNote = $("#storageNote");
+  els.confirmDialog = $("#confirmDialog");
+  els.confirmTitle = $("#confirmTitle");
+  els.confirmText = $("#confirmText");
+  els.confirmOkBtn = $("#confirmOkBtn");
+  els.confirmCancelBtn = $("#confirmCancelBtn");
+  els.viewer = $("#viewer");
+  els.viewerStage = $("#viewerStage");
+  els.viewerCount = $("#viewerCount");
+  els.viewerClose = $("#viewerClose");
+  els.toastRegion = $("#toastRegion");
+  els.busy = $("#busy");
+  els.busyText = $("#busyText");
+
+  let state = loadState();
+  let activeFilter = "all";      // all | add | minus | photo
+  let activeMonth = "all";       // all | YYYY-MM
+  let searchQuery = "";
+  let activeSign = 1;
+  let editingId = null;
+  let draftPhotos = [];
+  let justSavedId = null;
+  let lastTotal = null;
+  let heroAnimationFrame = 0;
+  let saveTimer = 0;
+  let confirmResolver = null;
+  let photoBusy = false;
+
+  /* =========================================================
+     顶部状态
+     ========================================================= */
+
+  function setSaveState(text, isError = false) {
+    els.saveState.textContent = text;
+    els.saveState.classList.toggle("is-error", isError);
+    els.saveState.classList.remove("is-flashing");
+  }
+
+  function flashSaved() {
+    window.clearTimeout(saveTimer);
+    els.saveState.textContent = "已保存";
+    els.saveState.classList.add("is-flashing");
+    els.saveState.classList.remove("is-error");
+    saveTimer = window.setTimeout(() => setSaveState("本地保存"), 1800);
+  }
+
+  function renderHeader() {
+    const now = new Date();
+    els.todayLabel.textContent = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 · ${WEEKDAYS[now.getDay()]}`;
+    els.heroDate.textContent = `${now.getMonth() + 1}月${now.getDate()}日`;
+    document.title = APP_NAME;
+  }
+
+  function showToast(message, type = "success", duration = 2600) {
+    const toast = document.createElement("div");
+    toast.className = `toast${type === "error" ? " is-error" : type === "warn" ? " is-warn" : ""}`;
+    if (type === "success") {
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      icon.setAttribute("class", "icon");
+      icon.setAttribute("aria-hidden", "true");
+      const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      use.setAttribute("href", "#i-check");
+      icon.appendChild(use);
+      toast.appendChild(icon);
+    }
+    const text = document.createElement("span");
+    text.textContent = message;
+    toast.appendChild(text);
+    els.toastRegion.appendChild(toast);
+    while (els.toastRegion.children.length > 3) {
+      els.toastRegion.firstElementChild.remove();
+    }
+    window.setTimeout(() => {
+      toast.classList.add("is-leaving");
+      window.setTimeout(() => toast.remove(), 240);
+    }, duration);
+  }
+
+  function setBusy(text) {
+    if (text) {
+      els.busyText.textContent = text;
+      els.busy.hidden = false;
+    } else {
+      els.busy.hidden = true;
+    }
+  }
+
+  /* =========================================================
+     首页渲染
+     ========================================================= */
+
+  function animateTotal(from, to, animate) {
+    window.cancelAnimationFrame(heroAnimationFrame);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    els.totalScore.classList.toggle("is-negative", to < 0);
+    if (!animate || reduceMotion || from === null || from === to) {
+      els.totalScore.textContent = formatScore(to);
+      return;
+    }
+    const duration = 560;
+    const start = performance.now();
+    const tick = now => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      els.totalScore.textContent = formatScore(from + (to - from) * eased);
+      if (progress < 1) {
+        heroAnimationFrame = window.requestAnimationFrame(tick);
+      } else {
+        els.totalScore.textContent = formatScore(to);
+      }
+    };
+    heroAnimationFrame = window.requestAnimationFrame(tick);
+  }
+
+  function renderHero(animate = true) {
+    const totals = computeTotals(state.items);
+    animateTotal(lastTotal, totals.total, animate);
+    lastTotal = totals.total;
+
+    els.statAdd.textContent = `+${formatScore(totals.add)}`;
+    els.statMinus.textContent = `−${formatScore(totals.minus)}`;
+    els.statCount.textContent = String(totals.count);
+
+    if (!totals.count) {
+      els.heroFormula.innerHTML = "还没有记录，点下面的加号记下第一笔";
+    } else {
+      els.heroFormula.innerHTML = `加分 <b>+${formatScore(totals.add)}</b> 减去扣分 <b class="is-minus">−${formatScore(totals.minus)}</b> 等于总分`;
+    }
+
+    const monthKey = todayISO().slice(0, 7);
+    const monthItems = state.items.filter(item => item.date.startsWith(monthKey));
+    if (!state.items.length) {
+      els.heroHint.textContent = "每一条记录都可以配上文字、照片和时间。";
+    } else if (!monthItems.length) {
+      els.heroHint.textContent = "本月还没有新记录。";
+    } else {
+      const monthNet = round2(monthItems.reduce((sum, item) => sum + item.score, 0));
+      els.heroHint.textContent = `本月 ${monthItems.length} 笔记录，净 ${signed(monthNet)} 分。`;
+    }
+  }
+
+  function getLastMonths(count) {
+    const now = new Date();
+    const months = [];
+    for (let index = count - 1; index >= 0; index -= 1) {
+      const date = new Date(now.getFullYear(), now.getMonth() - index, 1);
+      months.push({
+        key: `${date.getFullYear()}-${pad2(date.getMonth() + 1)}`,
+        label: `${date.getMonth() + 1}月`
+      });
+    }
+    return months;
+  }
+
+  function renderMonths() {
+    const months = getLastMonths(6);
+    const values = months.map(month => {
+      const items = state.items.filter(item => item.date.startsWith(month.key));
+      return { ...month, net: round2(items.reduce((sum, item) => sum + item.score, 0)), count: items.length };
+    });
+    els.monthStrip.innerHTML = values.map(month => {
+      const className = month.count === 0 ? "is-zero" : month.net >= 0 ? "is-add" : "is-minus";
+      return `<div class="month ${className}"><span>${month.label}</span><b>${month.count ? signed(month.net) : "·"}</b></div>`;
+    }).join("");
+
+    const current = values[values.length - 1];
+    els.monthSummary.textContent = current.count ? `${current.count} 笔，净 ${signed(current.net)}` : "本月暂无记录";
+  }
+
+  function renderFilters() {
+    const counts = { add: 0, minus: 0, photo: 0 };
+    for (const item of state.items) {
+      if (item.score > 0) counts.add += 1;
+      else counts.minus += 1;
+      if (item.photos.length) counts.photo += 1;
+    }
+    const options = [
+      { id: "all", name: "全部", count: state.items.length },
+      { id: "add", name: "加分", count: counts.add },
+      { id: "minus", name: "扣分", count: counts.minus },
+      { id: "photo", name: "有照片", count: counts.photo }
+    ];
+    els.filterBar.innerHTML = options.map(option => {
+      const active = activeFilter === option.id;
+      return `<button class="chip${active ? " is-active" : ""}" type="button" data-filter="${option.id}" aria-pressed="${active}">${option.name}<b>${option.count}</b></button>`;
+    }).join("");
+  }
+
+  function getFilteredItems() {
+    const keyword = searchQuery.trim().toLowerCase();
+    return sortItems(state.items).filter(item => {
+      if (activeFilter === "add" && item.score <= 0) return false;
+      if (activeFilter === "minus" && item.score >= 0) return false;
+      if (activeFilter === "photo" && !item.photos.length) return false;
+      if (activeMonth !== "all" && !item.date.startsWith(activeMonth)) return false;
+      if (!keyword) return true;
+      return item.title.toLowerCase().includes(keyword)
+        || item.note.toLowerCase().includes(keyword)
+        || item.date.includes(keyword)
+        || `${dateLabel(item.date)}${weekdayOf(item.date)}`.includes(keyword);
+    });
+  }
+
+  function emptyIllustration(kind) {
+    if (kind === "filter") {
+      return `
+        <svg class="empty-art" viewBox="0 0 134 116" aria-hidden="true">
+          <circle cx="55" cy="49" r="27" fill="none" stroke="#d4cdbc" stroke-width="2"/>
+          <path d="m75 69 19 19" stroke="#173b2e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M43 49h24M47 57h16" stroke="#c8c1b0" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="103" cy="28" r="12" fill="#e3ecb4"/>
+          <path d="M103 22v12M97 28h12" stroke="#173b2e" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>`;
+    }
+    return `
+      <svg class="empty-art" viewBox="0 0 134 116" aria-hidden="true">
+        <rect x="26" y="17" width="71" height="86" rx="9" fill="#f8f3e8" stroke="#d4cdbc"/>
+        <rect x="38" y="10" width="47" height="15" rx="5" fill="#173b2e"/>
+        <rect x="44" y="28" width="2" height="9" rx="1" fill="#e3ecb4"/>
+        <rect x="51" y="28" width="2" height="9" rx="1" fill="#e3ecb4"/>
+        <path d="M40 49h43M40 60h35M40 71h27" stroke="#cac3b2" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="96" cy="78" r="25" fill="#e3ecb4"/>
+        <path d="M96 68v20M86 78h20" stroke="#173b2e" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M48 86h22" stroke="#d8d0be" stroke-width="2" stroke-linecap="round"/>
+      </svg>`;
+  }
+
+  function emptyState(kind) {
+    if (kind === "filter") {
+      return `
+        <div class="empty">
+          ${emptyIllustration("filter")}
+          <h3 class="empty-title">没有匹配的记录</h3>
+          <p class="empty-text">换个关键词，或者清除筛选再看看。</p>
+          <div class="empty-actions">
+            <button class="btn btn-ghost" type="button" data-action="clear-filters">清除筛选</button>
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="empty">
+        ${emptyIllustration("empty")}
+        <h3 class="empty-title">还没有任何记录</h3>
+        <p class="empty-text">竞赛、志愿、证书、文体活动，拿到加分就随手记一笔，拍照留底，期末汇总不用翻聊天记录。</p>
+        <div class="empty-actions">
+          <button class="btn btn-primary" type="button" data-action="add">
+            <svg class="icon"><use href="#i-plus"/></svg>记下第一笔
+          </button>
+          <button class="text-button" type="button" data-action="sample">先看看示例</button>
+        </div>
+      </div>`;
+  }
+
+  function recordHTML(item) {
+    const day = Number(item.date.slice(8, 10));
+    const isMinus = item.score < 0;
+    const isNew = justSavedId === item.id ? " is-new" : "";
+    const thumbs = item.photos.slice(0, 2).map((photo, index) =>
+      `<img src="${photo.src}" alt="第 ${index + 1} 张照片" loading="lazy" decoding="async" data-photo="${escapeHTML(item.id)}" data-index="${index}">`
+    ).join("");
+    const more = item.photos.length > 2
+      ? `<span class="record-thumb-count" data-photo="${escapeHTML(item.id)}" data-index="2">+${item.photos.length - 2}</span>`
+      : "";
+    const note = item.note ? `<span class="record-note">${escapeHTML(item.note)}</span>` : "";
+    const clock = item.time
+      ? `<span class="with-icon"><svg class="icon"><use href="#i-clock"/></svg>${relativeTime(item)}</span>`
+      : `<span class="with-icon"><svg class="icon"><use href="#i-calendar"/></svg>${dateLabel(item.date)} ${weekdayOf(item.date)}</span>`;
+    const photoMeta = item.photos.length
+      ? `<span class="with-icon"><svg class="icon"><use href="#i-image"/></svg>${item.photos.length} 张</span>`
+      : "";
+    return `
+      <button class="record ${isMinus ? "is-minus" : "is-add"}${isNew}" type="button" data-id="${escapeHTML(item.id)}"
+              aria-label="编辑记录：${escapeHTML(item.title)}，${signed(item.score)} 分">
+        <span class="record-date"><b>${day}</b><span>${Number(item.date.slice(5, 7))}月</span></span>
+        <span class="record-copy">
+          <span class="record-title">${escapeHTML(item.title)}</span>
+          ${note}
+          <span class="record-meta">${clock}${photoMeta}</span>
+        </span>
+        <span class="record-score ${isMinus ? "is-minus" : "is-add"}">${signed(item.score)}</span>
+        <span class="record-thumb">${thumbs}${more}</span>
+      </button>`;
+  }
+
+  function renderRecords() {
+    const items = getFilteredItems();
+    if (!state.items.length) {
+      els.recordList.innerHTML = emptyState("empty");
+      return;
+    }
+    if (!items.length) {
+      els.recordList.innerHTML = emptyState("filter");
+      return;
+    }
+
+    const groups = new Map();
+    for (const item of items) {
+      const key = item.date.slice(0, 7);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(item);
+    }
+
+    const html = [];
+    for (const [month, monthItems] of groups) {
+      const [year, monthNumber] = month.split("-");
+      const net = round2(monthItems.reduce((sum, item) => sum + item.score, 0));
+      html.push(`<div class="month-label"><b>${year} 年 ${Number(monthNumber)} 月</b><span>${monthItems.length} 笔，净 ${signed(net)}</span></div>`);
+      for (const item of monthItems) html.push(recordHTML(item));
+    }
+    els.recordList.innerHTML = html.join("");
+
+    if (justSavedId) {
+      const savedId = justSavedId;
+      justSavedId = null;
+      window.setTimeout(() => {
+        const element = els.recordList.querySelector(`[data-id="${CSS.escape(savedId)}"]`);
+        if (element) element.classList.remove("is-new");
+      }, 1100);
+    }
+  }
+
+  function renderAll(options = {}) {
+    renderHeader();
+    renderHero(options.animate !== false);
+    renderMonths();
+    renderFilters();
+    renderRecords();
+  }
+
+  /* =========================================================
+     弹窗与确认框
+     ========================================================= */
+
+  function syncBodyLock() {
+    document.body.classList.toggle("modal-open", Boolean(document.querySelector("dialog[open]")) || !els.viewer.hidden);
+  }
+
+  function openDialog(dialog) {
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
+    syncBodyLock();
+  }
+
+  function closeDialog(dialog) {
+    if (dialog && dialog.open) dialog.close();
+  }
+
+  document.querySelectorAll("dialog").forEach(dialog => {
+    dialog.addEventListener("close", syncBodyLock);
+    dialog.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+
+  document.addEventListener("click", event => {
+    const closeButton = event.target.closest("[data-close]");
+    if (!closeButton) return;
+    closeDialog(document.getElementById(closeButton.dataset.close));
+  });
+
+  function askConfirm({ title, text, confirmLabel = "确认", danger = true }) {
+    if (confirmResolver) {
+      const previous = confirmResolver;
+      confirmResolver = null;
+      previous(false);
+    }
+    els.confirmTitle.textContent = title;
+    els.confirmText.textContent = text;
+    els.confirmOkBtn.textContent = confirmLabel;
+    els.confirmOkBtn.className = danger ? "btn btn-danger" : "btn btn-primary";
+    return new Promise(resolve => {
+      confirmResolver = resolve;
+      openDialog(els.confirmDialog);
+    });
+  }
+
+  function settleConfirm(value) {
+    if (!confirmResolver) return;
+    const resolve = confirmResolver;
+    confirmResolver = null;
+    closeDialog(els.confirmDialog);
+    resolve(value);
+  }
+
+  els.confirmOkBtn.addEventListener("click", () => settleConfirm(true));
+  els.confirmCancelBtn.addEventListener("click", () => settleConfirm(false));
+  els.confirmDialog.addEventListener("close", () => {
+    if (confirmResolver) {
+      const resolve = confirmResolver;
+      confirmResolver = null;
+      resolve(false);
+    }
+  });
+
+  /* =========================================================
+     照片处理
+     ========================================================= */
+
+  function loadImage(source) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error("图片无法读取"));
+      image.src = source;
+    });
+  }
+
+  function canvasToJpeg(canvas, quality) {
+    return new Promise(resolve => {
+      if (canvas.toBlob) {
+        canvas.toBlob(blob => resolve(blob), "image/jpeg", quality);
+        return;
+      }
+      try {
+        const dataUrl = canvas.toDataURL("image/jpeg", quality);
+        const binary = atob(dataUrl.split(",")[1]);
+        const bytes = new Uint8Array(binary.length);
+        for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+        resolve(new Blob([bytes], { type: "image/jpeg" }));
+      } catch (error) {
+        resolve(null);
+      }
+    });
+  }
+
+  function readAsDataURL(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(new Error("图片读取失败"));
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  async function compressPhoto(file, maxSide, quality) {
+    const objectUrl = URL.createObjectURL(file);
+    try {
+      const image = await loadImage(objectUrl);
+      const width = image.naturalWidth || image.width;
+      const height = image.naturalHeight || image.height;
+      if (!width || !height) throw new Error("图片尺寸异常");
+      const scale = Math.min(1, maxSide / Math.max(width, height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(width * scale));
+      canvas.height = Math.max(1, Math.round(height * scale));
+      const context = canvas.getContext("2d");
+      if (!context) throw new Error("浏览器不支持图片处理");
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.imageSmoothingQuality = "high";
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      const blob = await canvasToJpeg(canvas, quality);
+      if (!blob) throw new Error("图片编码失败");
+      return readAsDataURL(blob);
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  }
+
+  async function preparePhoto(file) {
+    if (!file) return null;
+    if (!/^image\//.test(file.type) && file.type !== "") throw new Error("这不是图片文件");
+    if (file.size > 40 * 1024 * 1024) throw new Error("单张照片超过 40MB");
+
+    const steps = [
+      [PHOTO_MAX_SIDE, 0.82],
+      [1024, 0.7],
+      [800, 0.6]
+    ];
+    let src = "";
+    let size = 0;
+    try {
+      for (const [maxSide, quality] of steps) {
+        src = await compressPhoto(file, maxSide, quality);
+        size = Math.round((src.slice(src.indexOf(",") + 1).length * 3) / 4);
+        if (size <= PHOTO_TARGET_BYTES) break;
+      }
+      return { id: uid(), type: "image/jpeg", size, src };
+    } catch (error) {
+      if (file.size > 3 * 1024 * 1024) throw error;
+      const raw = await readAsDataURL(file);
+      return { id: uid(), type: file.type || "image/jpeg", size: file.size, src: raw };
+    }
+  }
+
+  async function addPhotos(files) {
+    if (photoBusy) return;
+    const list = Array.from(files || []).filter(Boolean);
+    if (!list.length) return;
+    const room = MAX_PHOTOS - draftPhotos.length;
+    if (room <= 0) {
+      showToast(`每条记录最多 ${MAX_PHOTOS} 张照片`, "warn");
+      return;
+    }
+    photoBusy = true;
+    setBusy("正在压缩照片");
+    let added = 0;
+    try {
+      for (const file of list.slice(0, room)) {
+        try {
+          const photo = await preparePhoto(file);
+          if (photo) {
+            draftPhotos.push(photo);
+            added += 1;
+            renderPhotoList();
+          }
+        } catch (error) {
+          showToast(`有 1 张照片没能添加：${error.message || "格式不支持"}`, "error", 3600);
+        }
+      }
+      if (list.length > room) showToast(`已添加 ${room} 张，达到 ${MAX_PHOTOS} 张上限`, "warn");
+      else if (added) showToast(`已添加 ${added} 张照片`);
+    } finally {
+      photoBusy = false;
+      setBusy(null);
+      els.photoInput.value = "";
+    }
+  }
+
+  function renderPhotoList() {
+    const tiles = draftPhotos.map(photo =>
+      `<div class="photo-tile">
+        <img src="${photo.src}" alt="已添加的照片">
+        <button class="photo-remove" type="button" data-remove-photo="${escapeHTML(photo.id)}" aria-label="移除这张照片">
+          <svg class="icon"><use href="#i-close"/></svg>
+        </button>
+      </div>`
+    ).join("");
+    const addable = draftPhotos.length < MAX_PHOTOS;
+    els.photoList.innerHTML = tiles + (addable
+      ? `<button class="photo-add" type="button" data-add-photo>
+          <svg class="icon"><use href="#i-camera"/></svg>
+          <span>拍照 / 相册</span>
+        </button>`
+      : "");
+    const bytes = draftPhotos.reduce((sum, photo) => sum + photo.size, 0);
+    els.photoHint.textContent = draftPhotos.length
+      ? `${draftPhotos.length}/${MAX_PHOTOS} 张 · 约 ${formatBytes(bytes)}`
+      : `最多 ${MAX_PHOTOS} 张，自动压缩`;
+  }
+
+  /* =========================================================
+     新增与编辑
+     ========================================================= */
+
+  function showFormError(message, field) {
+    els.formError.textContent = message;
+    els.formError.hidden = false;
+    els.entryForm.querySelectorAll(".has-error").forEach(element => element.classList.remove("has-error"));
+    if (field) {
+      field.classList.add("has-error");
+      try { field.focus({ preventScroll: false }); } catch { /* 忽略 */ }
+    }
+    const body = els.entryDialog.querySelector(".sheet-body");
+    if (body) body.scrollTop = 0;
+  }
+
+  function clearFormError() {
+    els.formError.hidden = true;
+    els.formError.textContent = "";
+    els.entryForm.querySelectorAll(".has-error").forEach(element => element.classList.remove("has-error"));
+  }
+
+  function setSign(sign) {
+    activeSign = sign;
+    els.signPrefix.textContent = sign > 0 ? "+" : "−";
+    els.amountEditor.classList.toggle("is-negative", sign < 0);
+    els.entryForm.querySelectorAll("[data-sign]").forEach(button => {
+      const isActive = Number(button.dataset.sign) === sign;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  function openEntry(item = null) {
+    clearFormError();
+    editingId = item ? item.id : null;
+    draftPhotos = item ? item.photos.map(photo => ({ ...photo })) : [];
+    els.entryForm.reset();
+
+    if (item) {
+      els.entryEyebrow.textContent = "EDIT RECORD";
+      els.entryTitle.textContent = "编辑记录";
+      els.entrySubmitBtn.textContent = "保存修改";
+      els.deleteEntryBtn.hidden = false;
+      activeSign = item.score > 0 ? 1 : -1;
+      els.scoreInput.value = formatScore(Math.abs(item.score));
+      els.titleInput.value = item.title;
+      els.noteInput.value = item.note;
+      els.dateInput.value = item.date;
+      els.timeInput.value = item.time || "";
+    } else {
+      els.entryEyebrow.textContent = "NEW RECORD";
+      els.entryTitle.textContent = "记一笔";
+      els.entrySubmitBtn.textContent = "保存记录";
+      els.deleteEntryBtn.hidden = true;
+      activeSign = 1;
+      els.scoreInput.value = "";
+      els.titleInput.value = "";
+      els.noteInput.value = "";
+      els.dateInput.value = todayISO();
+      els.timeInput.value = nowHHMM();
+    }
+
+    setSign(activeSign);
+    renderPhotoList();
+    openDialog(els.entryDialog);
+    const body = els.entryDialog.querySelector(".sheet-body");
+    if (body) body.scrollTop = 0;
+    if (!item) window.setTimeout(() => els.scoreInput.focus(), 120);
+  }
+
+  els.entryForm.addEventListener("submit", event => {
+    event.preventDefault();
+    clearFormError();
+
+    const rawAmount = els.scoreInput.value.trim().replace(",", ".");
+    const amount = Number(rawAmount);
+    if (!rawAmount || !Number.isFinite(amount) || amount <= 0) {
+      showFormError("请填写大于 0 的分值，例如 0.5 或 2。", els.scoreInput);
+      return;
+    }
+    if (amount > MAX_SCORE) {
+      showFormError(`单笔分值不能超过 ${MAX_SCORE} 分。`, els.scoreInput);
+      return;
+    }
+    const title = els.titleInput.value.trim();
+    if (!title) {
+      showFormError("请填写事项名称。", els.titleInput);
+      return;
+    }
+    const date = els.dateInput.value;
+    if (!isValidISODate(date)) {
+      showFormError("请选择有效的日期。", els.dateInput);
+      return;
+    }
+    const time = els.timeInput.value.trim();
+    if (time && !isValidTime(time)) {
+      showFormError("时间格式不正确。", els.timeInput);
+      return;
+    }
+
+    const score = round2(activeSign * amount);
+    if (score === 0) {
+      showFormError("分值不能为 0。", els.scoreInput);
+      return;
+    }
+
+    const existing = editingId ? state.items.find(item => item.id === editingId) : null;
+    const entry = {
+      id: existing ? existing.id : uid(),
+      title: title.slice(0, MAX_TITLE),
+      note: els.noteInput.value.replace(/\r\n/g, "\n").trim().slice(0, MAX_NOTE),
+      score,
+      date,
+      time,
+      photos: draftPhotos.map(photo => ({ ...photo })),
+      createdAt: existing ? existing.createdAt : Date.now()
+    };
+
+    if (existing) {
+      state.items[state.items.findIndex(item => item.id === existing.id)] = entry;
+    } else {
+      state.items.unshift(entry);
+    }
+
+    if (!saveState()) return;
+    justSavedId = entry.id;
+    closeDialog(els.entryDialog);
+    editingId = null;
+    renderAll({ animate: true });
+    showToast(existing ? "记录已更新" : `已记下 ${signed(score)} 分`);
+  });
+
+  els.entryForm.addEventListener("input", event => {
+    if (!els.formError.hidden) clearFormError();
+    if (event.target.classList) event.target.classList.remove("has-error");
+  });
+
+  els.entryForm.querySelectorAll("[data-sign]").forEach(button => {
+    button.addEventListener("click", () => {
+      setSign(Number(button.dataset.sign));
+      els.scoreInput.focus();
+    });
+  });
+
+  els.photoList.addEventListener("click", event => {
+    if (event.target.closest("[data-add-photo]")) {
+      if (draftPhotos.length >= MAX_PHOTOS) return;
+      els.photoInput.click();
+      return;
+    }
+    const remove = event.target.closest("[data-remove-photo]");
+    if (remove) {
+      draftPhotos = draftPhotos.filter(photo => photo.id !== remove.dataset.removePhoto);
+      renderPhotoList();
+    }
+  });
+
+  els.photoInput.addEventListener("change", () => addPhotos(els.photoInput.files));
+
+  els.deleteEntryBtn.addEventListener("click", async () => {
+    if (!editingId) return;
+    const entry = state.items.find(item => item.id === editingId);
+    if (!entry) return;
+    const confirmed = await askConfirm({
+      title: "删除这条记录？",
+      text: `${entry.title} 的 ${signed(entry.score)} 分${entry.photos.length ? `和 ${entry.photos.length} 张照片` : ""}会被删除，无法撤销。`,
+      confirmLabel: "删除记录"
+    });
+    if (!confirmed) return;
+    state.items = state.items.filter(item => item.id !== editingId);
+    editingId = null;
+    saveState();
+    closeDialog(els.entryDialog);
+    renderAll({ animate: true });
+    showToast("记录已删除", "warn");
+  });
+
+  els.entryDialog.addEventListener("close", () => {
+    editingId = null;
+    draftPhotos = [];
+    clearFormError();
+  });
+
+  /* =========================================================
+     图片查看器
+     ========================================================= */
+
+  function updateViewerCount() {
+    const width = els.viewerStage.clientWidth || 1;
+    const index = Math.round(els.viewerStage.scrollLeft / width);
+    const total = els.viewerStage.children.length;
+    els.viewerCount.textContent = `${Math.min(total, index + 1)} / ${total}`;
+  }
+
+  function openViewer(photos, startIndex = 0) {
+    els.viewerStage.innerHTML = photos.map(photo => `<img src="${photo.src}" alt="照片">`).join("");
+    els.viewer.hidden = false;
+    syncBodyLock();
+    els.viewerStage.scrollLeft = els.viewerStage.clientWidth * startIndex;
+    updateViewerCount();
+  }
+
+  function closeViewer() {
+    els.viewer.hidden = true;
+    els.viewerStage.innerHTML = "";
+    syncBodyLock();
+  }
+
+  els.viewerStage.addEventListener("scroll", () => updateViewerCount(), { passive: true });
+  els.viewerClose.addEventListener("click", closeViewer);
+
+  function findEntry(id) {
+    return state.items.find(item => item.id === id) || null;
+  }
+
+  function showRecordPhotos(id, index) {
+    const entry = findEntry(id);
+    if (!entry || !entry.photos.length) return;
+    const safeIndex = Math.min(Math.max(0, Number(index) || 0), entry.photos.length - 1);
+    openViewer(entry.photos, safeIndex);
+  }
+
+  /* =========================================================
+     搜索与筛选
+     ========================================================= */
+
+  els.searchInput.addEventListener("input", () => {
+    searchQuery = els.searchInput.value;
+    els.searchClear.hidden = !searchQuery;
+    renderRecords();
+  });
+
+  els.searchClear.addEventListener("click", () => {
+    els.searchInput.value = "";
+    searchQuery = "";
+    els.searchClear.hidden = true;
+    renderRecords();
+    els.searchInput.focus();
+  });
+
+  els.filterBar.addEventListener("click", event => {
+    const button = event.target.closest("[data-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    renderFilters();
+    renderRecords();
+  });
+
+  function resetFilters() {
+    activeFilter = "all";
+    activeMonth = "all";
+    searchQuery = "";
+    els.searchInput.value = "";
+    els.searchClear.hidden = true;
+    renderFilters();
+    renderRecords();
+  }
+
+  document.getElementById("recordList").addEventListener("click", event => {
+    const photoTarget = event.target.closest("[data-photo]");
+    if (photoTarget) {
+      showRecordPhotos(photoTarget.dataset.photo, photoTarget.dataset.index);
+      return;
+    }
+    const actionButton = event.target.closest("[data-action]");
+    if (actionButton) {
+      const action = actionButton.dataset.action;
+      if (action === "add") openEntry();
+      if (action === "sample") loadSampleData();
+      if (action === "clear-filters") resetFilters();
+      return;
+    }
+    const record = event.target.closest("[data-id]");
+    if (!record) return;
+    const entry = state.items.find(item => item.id === record.dataset.id);
+    if (entry) openEntry(entry);
+  });
+
+  /* =========================================================
+     页面切换
+     ========================================================= */
+
+  function switchView(name) {
+    const isHome = name !== "settings";
+    els.homeView.hidden = !isHome;
+    els.settingsView.hidden = isHome;
+    document.querySelectorAll(".tab[data-tab]").forEach(tab => {
+      const active = tab.dataset.tab === (isHome ? "home" : "settings");
+      tab.classList.toggle("is-active", active);
+      if (active) tab.setAttribute("aria-current", "page");
+      else tab.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+    if (!isHome) updateStorageInfo();
+  }
+
+  document.querySelectorAll(".tab[data-tab]").forEach(tab => {
+    tab.addEventListener("click", () => switchView(tab.dataset.tab));
+  });
+
+  els.addBtn.addEventListener("click", () => openEntry());
+
+  window.addEventListener("scroll", () => {
+    els.topbar.classList.toggle("is-scrolled", window.scrollY > 4);
+  }, { passive: true });
+
+  /* =========================================================
+     导出、导入、示例与清空
+     ========================================================= */
+
+  function downloadFile(content, filename, mimeType) {
+    const blob = content instanceof Blob ? content : new Blob([content], { type: `${mimeType};charset=utf-8` });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 4000);
+  }
+
+  function exportJSON() {
+    setBusy("正在打包备份");
+    window.setTimeout(() => {
+      try {
+        const payload = {
+          app: APP_NAME,
+          version: APP_VERSION,
+          exportedAt: new Date().toISOString(),
+          data: serializeState()
+        };
+        downloadFile(JSON.stringify(payload), `${APP_NAME}-${todayISO()}.json`, "application/json");
+        const photos = state.items.reduce((sum, item) => sum + item.photos.length, 0);
+        showToast(`备份已导出：${state.items.length} 条记录、${photos} 张照片`, "success", 3200);
+      } catch (error) {
+        console.error(error);
+        showToast("导出失败，请重试", "error");
+      } finally {
+        setBusy(null);
+      }
+    }, 30);
+  }
+
+  function csvEscape(value) {
+    const text = String(value ?? "");
+    return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+  }
+
+  function exportCSV() {
+    const rows = [
+      ["日期", "时间", "类型", "事项", "分值", "文字说明", "照片数"],
+      ...sortItems(state.items).reverse().map(item => [
+        item.date,
+        item.time || "",
+        item.score > 0 ? "加分" : "扣分",
+        item.title,
+        formatScore(item.score),
+        item.note,
+        item.photos.length
+      ])
+    ];
+    const csv = rows.map(row => row.map(csvEscape).join(",")).join("\r\n");
+    downloadFile(`\ufeff${csv}`, `${APP_NAME}-${todayISO()}.csv`, "text/csv");
+    showToast("表格已导出，可用 Excel 或 WPS 打开");
+  }
+
+  function buildSampleState() {
+    const now = Date.now();
+    const today = new Date();
+    const dayOffset = days => {
+      const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() - days, 10, 30);
+      return { date: ymd(date), time: `${pad2(date.getHours())}:${pad2(date.getMinutes())}` };
+    };
+    const specs = [
+      ["全国大学生数学建模竞赛 省级二等奖", 3, "团队三人，证书已交班委", 3],
+      ["社区志愿服务 8 小时", 1.5, "签到表见照片", 9],
+      ["英语六级 520 分", 1, "CET-6 证书", 16],
+      ["校级运动会 4×100 米接力 第三名", 2, "体育部盖章", 24],
+      ["宿舍卫生月评 优秀", 0.5, "生活委员登记", 33],
+      ["迎新晚会合唱演出", 1, "", 40],
+      ["迟到 1 次", -0.5, "纪律扣分", 47]
+    ];
+    return {
+      items: specs.map((spec, index) => {
+        const when = dayOffset(spec[3]);
+        return {
+          id: uid(),
+          title: spec[0],
+          note: spec[2],
+          score: spec[1],
+          date: when.date,
+          time: when.time,
+          photos: [],
+          createdAt: now - index * 1000
+        };
+      }),
+      updatedAt: now
+    };
+  }
+
+  async function loadSampleData() {
+    if (state.items.length) {
+      const confirmed = await askConfirm({
+        title: "载入示例数据？",
+        text: "示例会替换当前全部记录和照片。建议先导出备份。",
+        confirmLabel: "载入示例"
+      });
+      if (!confirmed) return;
+    }
+    state = normalizeState(buildSampleState());
+    saveState();
+    switchView("home");
+    renderAll({ animate: true });
+    showToast("示例数据已载入");
+  }
+
+  async function clearAllData() {
+  if (!state.items.length) {
+    showToast("目前没有可清空的记录");
+    return;
+  }
+  const photos = state.items.reduce((sum, item) => sum + item.photos.length, 0);
+  const confirmed = await askConfirm({
+    title: "清空全部记录？",
+    text: `将删除 ${state.items.length} 条记录${photos ? `和 ${photos} 张照片` : ""}，此操作无法撤销。`,
+    confirmLabel: "清空记录"
+  });
+  if (!confirmed) return;
+  state = { items: [], updatedAt: Date.now() };
+  saveState();
+  renderAll({ animate: true });
+  showToast("全部记录已清空", "warn");
+  }
+
+  document.addEventListener("click", event => {
+    const row = event.target.closest("[data-settings]");
+    if (!row) return;
+    const action = row.dataset.settings;
+    if (action === "export-json") exportJSON();
+    if (action === "export-csv") exportCSV();
+    if (action === "sample") loadSampleData();
+    if (action === "import") els.importBtn.click();
+    if (action === "clear") clearAllData();
+  });
+
+  els.importBtn.addEventListener("click", () => {
+    els.importFile.value = "";
+    els.importFile.click();
+  });
+
+  els.importFile.addEventListener("change", async () => {
+    const file = els.importFile.files && els.importFile.files[0];
+    if (!file) return;
+    setBusy("正在读取备份");
+    try {
+      if (file.size > IMPORT_MAX_BYTES) throw new Error("备份文件太大，超过 80MB");
+      const parsed = JSON.parse(await file.text());
+      const candidate = parsed && typeof parsed === "object" && parsed.data && typeof parsed.data === "object"
+        ? parsed.data
+        : parsed && typeof parsed === "object" && parsed.state && typeof parsed.state === "object"
+          ? parsed.state
+          : parsed;
+      if (!candidate || typeof candidate !== "object" || !Array.isArray(candidate.items)) {
+        throw new Error("文件里没有找到有效的记录数据");
+      }
+      const imported = normalizeState(candidate);
+      if (!imported.items.length) throw new Error("备份里没有可导入的记录");
+      setBusy(null);
+      if (state.items.length) {
+        const confirmed = await askConfirm({
+          title: "导入这份备份？",
+          text: `将用备份中的 ${imported.items.length} 条记录替换当前的 ${state.items.length} 条记录，照片也会一起替换。`,
+          confirmLabel: "导入备份",
+          danger: false
+        });
+        if (!confirmed) return;
+      }
+      state = imported;
+      if (!saveState()) return;
+      switchView("home");
+      renderAll({ animate: true });
+      showToast(`已导入 ${imported.items.length} 条记录`);
+    } catch (error) {
+      console.error(error);
+      showToast(`导入失败：${error.message || "文件格式不正确"}`, "error", 4600);
+    } finally {
+      setBusy(null);
+      els.importFile.value = "";
+    }
+  });
+
+  /* =========================================================
+     存储用量
+     ========================================================= */
+
+  function updateStorageInfo() {
+    if (!els.storageNote) return;
+    let used = 0;
+    try {
+      used = new Blob([window.localStorage.getItem(STORAGE_KEY) || ""]).size;
+    } catch (error) {
+      used = 0;
+    }
+    const photos = state.items.reduce((sum, item) => sum + item.photos.length, 0);
+    const percent = Math.min(100, (used / QUOTA_BYTES) * 100);
+    els.storageBar.style.width = `${Math.max(2, percent).toFixed(1)}%`;
+    els.storageNote.textContent = `已用 ${formatBytes(used)}，约按 4 MB 上限估算占 ${percent.toFixed(0)}%。共 ${state.items.length} 条记录、${photos} 张照片。空间接近上限时，删掉旧照片或先导出备份。`;
+    els.importHint.textContent = state.items.length ? "整份替换当前数据，导入前会再确认一次" : "选择之前导出的 JSON 文件";
+  }
+
+  /* =========================================================
+     快捷键
+     ========================================================= */
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !els.viewer.hidden) closeViewer();
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter" && els.entryDialog.open) {
+      event.preventDefault();
+      els.entryForm.requestSubmit();
+    }
+    const tag = event.target.tagName;
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(tag);
+    if (event.key === "n" && !event.ctrlKey && !event.metaKey && !typing && !document.querySelector("dialog[open]") && els.viewer.hidden) {
+      event.preventDefault();
+      openEntry();
+    }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      els.searchInput.focus();
+    }
+  });
+
+  window.addEventListener("storage", event => {
+    if (event.key !== STORAGE_KEY) return;
+    state = loadState();
+    renderAll({ animate: false });
+    updateStorageInfo();
+    showToast("已同步其他标签页的修改");
+  });
+
+  if ("serviceWorker" in navigator && window.isSecureContext) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(error => {
+        console.warn("离线缓存注册失败：", error);
+      });
+    });
+  }
+
+  renderAll({ animate: true });
+  updateStorageInfo();
+})();
+  </script>
+</body>
+</html>
